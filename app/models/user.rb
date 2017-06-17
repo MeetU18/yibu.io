@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable
 
   has_many :topics
+  has_many :votes
 end

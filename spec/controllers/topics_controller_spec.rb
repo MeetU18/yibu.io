@@ -20,81 +20,100 @@ require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
 
+  let (:user) {
+    create :user
+  }
+
   # This should return the minimal set of attributes required to create a valid
   # Topic. As you add validations to Topic, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {title: 'First topic', content: 'Hello World! this is first topic!'}
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TopicsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) {{}}
 
   describe "GET #index" do
     it "assigns all topics as @topics" do
-      topic = Topic.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      topic = user.topics.create! valid_attributes
+      get :index, params: {}
       expect(assigns(:topics)).to eq([topic])
     end
   end
 
   describe "GET #show" do
     it "assigns the requested topic as @topic" do
-      topic = Topic.create! valid_attributes
-      get :show, params: {id: topic.to_param}, session: valid_session
+      topic = user.topics.create! valid_attributes
+      get :show, params: {id: topic.to_param}
       expect(assigns(:topic)).to eq(topic)
     end
   end
 
   describe "GET #new" do
     it "assigns a new topic as @topic" do
-      get :new, params: {}, session: valid_session
+      sign_in user
+      get :new, params: {}
       expect(assigns(:topic)).to be_a_new(Topic)
+    end
+
+    it "non sign in user cannot see this page" do
+      get :new, params: {}
+      expect(assigns(:topic)).to be_nil
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested topic as @topic" do
-      topic = Topic.create! valid_attributes
-      get :edit, params: {id: topic.to_param}, session: valid_session
+      sign_in user
+      topic = user.topics.create! valid_attributes
+      get :edit, params: {id: topic.to_param}
       expect(assigns(:topic)).to eq(topic)
+    end
+
+    it "other user cannot edit @topic" do
+      sign_in create(:user)
+      topic = user.topics.create! valid_attributes
+      expect {
+        get :edit, params: {id: topic.to_param}
+      }.to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
+      before(:each) {
+        sign_in user
+      }
       it "creates a new Topic" do
         expect {
-          post :create, params: {topic: valid_attributes}, session: valid_session
+          post :create, params: {topic: valid_attributes}
         }.to change(Topic, :count).by(1)
       end
 
       it "assigns a newly created topic as @topic" do
-        post :create, params: {topic: valid_attributes}, session: valid_session
+        post :create, params: {topic: valid_attributes}
         expect(assigns(:topic)).to be_a(Topic)
         expect(assigns(:topic)).to be_persisted
       end
 
       it "redirects to the created topic" do
-        post :create, params: {topic: valid_attributes}, session: valid_session
+        post :create, params: {topic: valid_attributes}
         expect(response).to redirect_to(Topic.last)
       end
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved topic as @topic" do
-        post :create, params: {topic: invalid_attributes}, session: valid_session
-        expect(assigns(:topic)).to be_a_new(Topic)
+      it "non sign in user can not create post" do
+        post :create, params: {topic: valid_attributes}
+        expect(assigns(:topic)).to be_nil
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {topic: invalid_attributes}, session: valid_session
+        sign_in user
+        post :create, params: {topic: {content: 'should not pass'}}
         expect(response).to render_template("new")
       end
     end
@@ -103,55 +122,72 @@ RSpec.describe TopicsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {title: 'It will be cool!'}
+      }
+
+      before(:each) {
+        sign_in user
       }
 
       it "updates the requested topic" do
-        topic = Topic.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: new_attributes}, session: valid_session
+        topic = user.topics.create! valid_attributes
+        put :update, params: {id: topic.to_param, topic: new_attributes}
         topic.reload
-        skip("Add assertions for updated state")
+        expect(topic.title).to_not eq(valid_attributes[:title])
       end
 
       it "assigns the requested topic as @topic" do
-        topic = Topic.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: valid_attributes}, session: valid_session
+        topic = user.topics.create! valid_attributes
+        put :update, params: {id: topic.to_param, topic: valid_attributes}
         expect(assigns(:topic)).to eq(topic)
       end
 
       it "redirects to the topic" do
-        topic = Topic.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: valid_attributes}, session: valid_session
+        topic = user.topics.create! valid_attributes
+        put :update, params: {id: topic.to_param, topic: valid_attributes}
         expect(response).to redirect_to(topic)
       end
     end
 
     context "with invalid params" do
+      let(:invalid_attributes) {{title: ''}}
       it "assigns the topic as @topic" do
-        topic = Topic.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: invalid_attributes}, session: valid_session
+        sign_in user
+        topic = user.topics.create! valid_attributes
+        put :update, params: {id: topic.to_param, topic: invalid_attributes}
         expect(assigns(:topic)).to eq(topic)
       end
 
+      it "user not sign in" do
+        topic = user.topics.create! valid_attributes
+        put :update, params: {id: topic.to_param, topic: invalid_attributes}
+        expect(assigns(:topic)).to be_nil
+      end
+
       it "re-renders the 'edit' template" do
-        topic = Topic.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: invalid_attributes}, session: valid_session
+        sign_in user
+        topic = user.topics.create! valid_attributes
+        put :update, params: {id: topic.to_param, topic: invalid_attributes}
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
+    before :each do
+      sign_in user
+    end
+
     it "destroys the requested topic" do
-      topic = Topic.create! valid_attributes
+      topic = user.topics.create! valid_attributes
       expect {
-        delete :destroy, params: {id: topic.to_param}, session: valid_session
+        delete :destroy, params: {id: topic.to_param}
       }.to change(Topic, :count).by(-1)
     end
 
     it "redirects to the topics list" do
-      topic = Topic.create! valid_attributes
-      delete :destroy, params: {id: topic.to_param}, session: valid_session
+      topic = user.topics.create! valid_attributes
+      delete :destroy, params: {id: topic.to_param}
       expect(response).to redirect_to(topics_url)
     end
   end
