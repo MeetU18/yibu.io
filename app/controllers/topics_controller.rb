@@ -1,6 +1,8 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+
   before_action :set_topic_by_user, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :up_vote, :down_vote, :unvote]
 
   # GET /topics
   # GET /topics.json
@@ -64,11 +66,26 @@ class TopicsController < ApplicationController
     end
   end
 
+  def up_vote
+    @vote = current_user.up_vote(@topic)
+  end
+
+  def down_vote
+    @vote = current_user.down_vote(@topic)
+  end
+
+  def unvote
+    @vote = current_user.unvote(@topic)
+  end
+
   private
   def set_topic_by_user
     @topic = current_user.topics.find(params[:id])
   end
 
+  def set_topic
+    @topic = Topic.find(params[:id])
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def topic_params

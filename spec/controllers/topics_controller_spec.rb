@@ -20,7 +20,7 @@ require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
 
-  let (:user) {
+  let(:user) {
     create :user
   }
 
@@ -192,4 +192,31 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
+  describe "vote posts" do
+    let(:topic) {create :topic}
+    it 'upvote a post' do
+      topic # preload
+      expect {
+        sign_in create(:user)
+        post :up_vote, params: {id: topic.to_param}
+      }.to change(topic, :votes_count).by(1)
+    end
+
+
+    it "POST #down_vote" do
+      topic # preload
+      expect {
+        sign_in create(:user)
+        post :down_vote, params: {id: topic.to_param}
+      }.to change(topic, :votes_count).by(-1)
+    end
+
+    it "DELETE #unvote" do
+      topic # preload
+      expect {
+        sign_in create(:user)
+        delete :unvote, params: {id: topic.to_param}
+      }.to change(topic, :votes_count).by(0)
+    end
+  end
 end
