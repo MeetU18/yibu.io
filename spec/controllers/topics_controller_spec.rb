@@ -37,10 +37,54 @@ RSpec.describe TopicsController, type: :controller do
   let(:valid_session) {{}}
 
   describe "GET #index" do
-    it "assigns all topics as @topics" do
-      topic = user.topics.create! valid_attributes
-      get :index, params: {}
-      expect(assigns(:topics)).to eq([topic])
+    context "topics sort by score" do
+      it 'few positive-vote only posts should not be top' do
+        # 6 up-votes, 1 down-vote
+        reliable_topic = create :topic
+        5.times {create(:user).up_vote reliable_topic}
+        create(:user).down_vote reliable_topic
+        reliable_topic.refresh_score
+        # only 2 up-votes
+        few_votes_topic = create :topic
+        create(:user).up_vote few_votes_topic
+        few_votes_topic.refresh_score
+
+        get :index
+
+        topics = assigns(:topics)
+        expect(topics.to_a.index(reliable_topic)).to be < topics.to_a.index(few_votes_topic)
+      end
+
+      it 'positive-votes percent should better than count' do
+        # 4 up-votes, 1 down-vote, 3 more up votes, 80% positive
+        more_percent_ups_topic = create :topic
+        3.times {create(:user).up_vote more_percent_ups_topic}
+        create(:user).down_vote more_percent_ups_topic
+        more_percent_ups_topic.refresh_score
+        # 10 up-votes, 5 down-votes, 5 more up votes, 66% positive
+        more_ups_topic = create :topic
+        9.times {create(:user).up_vote more_ups_topic}
+        5.times {create(:user).down_vote more_ups_topic}
+        more_ups_topic.refresh_score
+
+        get :index
+
+        topics = assigns(:topics)
+        expect(topics.to_a.index(more_percent_ups_topic)).to be < topics.to_a.index(more_ups_topic)
+      end
+
+      it 'new posts should better than old' do
+        new_topic = create :topic
+        new_topic.refresh_score
+
+        old_topic = create :topic, created_at: 2.days.ago
+        old_topic.refresh_score
+
+        get :index
+
+        topics = assigns(:topics)
+        expect(topics.to_a.index(new_topic)).to be < topics.to_a.index(old_topic)
+      end
     end
   end
 

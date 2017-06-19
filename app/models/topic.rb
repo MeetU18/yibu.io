@@ -2,6 +2,7 @@ class Topic < ApplicationRecord
   belongs_to :user
 
   include Voteable
+  include Scoreable
 
   validates_presence_of :title, :content, :user_id
 
