@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619101906) do
+ActiveRecord::Schema.define(version: 20170620122146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170619101906) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.decimal  "score",      precision: 11, scale: 7, default: "0.0"
+    t.integer  "format",                              default: 0,     null: false
     t.index ["score"], name: "index_topics_on_score", using: :btree
     t.index ["user_id"], name: "index_topics_on_user_id", using: :btree
   end

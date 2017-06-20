@@ -28,7 +28,7 @@ RSpec.describe TopicsController, type: :controller do
   # Topic. As you add validations to Topic, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {title: 'First topic', content: 'Hello World! this is first topic!'}
+    {title: 'First topic', content: 'Hello World! this is first topic!', format: 'text'}
   }
 
   # This should return the minimal set of values that should be in the session
