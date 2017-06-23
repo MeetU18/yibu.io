@@ -9,6 +9,6 @@ class Vote < ApplicationRecord
   private
 
   def refresh_voteable_score_background
-    voteable.refresh_score_background if value_changed?
+    voteable.refresh_score_background if saved_change_to_value?
   end
 end
