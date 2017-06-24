@@ -1,3 +1,41 @@
 // Place all the styles related to the topics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "layouts";
+
+
+// topics list
+td.rank {
+  width: 20px;
+  padding-right: 10px;
+  color: $light-gray;
+  font-size: 20px;
+}
+
+td.vote {
+  width: 40px;
+  padding-left: 0;
+}
+
+div.topic-title {
+  font-size: 18px;
+  //font-weight: lighter;
+  a {
+    color: black;
+  }
+}
+
+div.topic-subtext {
+  padding-top: 14px;
+}
+
+// vote component
+div.vote {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: $medium-gray;
+  i {
+    color: $medium-gray;
+  }
+}

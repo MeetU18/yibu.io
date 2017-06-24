@@ -1,0 +1,10 @@
+// fix topbar link
+li.menu-text {
+  a {
+    display: inline;
+    padding: 0;
+    line-height: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

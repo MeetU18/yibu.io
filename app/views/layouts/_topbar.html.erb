@@ -1,0 +1,19 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="menu">
+      <li class="menu-text"><%= link_to '异步IO', '/' %></li>
+      <li><a href="#">热度排序</a></li>
+      <li><%= link_to '发布', new_topic_path %></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <% if signed_in? %>
+          <li><a href="#"><%= current_user %></a></li>
+          <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+          <li><%= link_to '登录', new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

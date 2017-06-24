@@ -16,4 +16,11 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore node_modules
 /node_modules/*
+
+# Ignore source map
+JSON
+JSON.map
+
+.sass-cache
