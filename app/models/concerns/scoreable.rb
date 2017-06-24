@@ -14,7 +14,7 @@ module Scoreable
   end
 
   def refresh_score_background
-    ScoreWorker.perform_in(5.minutes, self, *score_calculation_args)
+    ScoreWorker.perform_in(5.minutes, id, self.class.to_s, *score_calculation_args)
   end
 
   class_methods do
