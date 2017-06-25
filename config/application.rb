@@ -16,5 +16,10 @@ module YibuIo
     # -- all .rb files in that directory are automatically loaded.
 
     config.assets.paths << '/node_modules'
+
+    # config mailer
+    config.action_mailer.default_url_options = Settings.mailer.default_url_options.to_h
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = Settings.mailer.smtp.to_h
   end
 end

@@ -58,9 +58,9 @@ zh-CN:
       reset_password_instructions:
         action: "更改我的密码"
         greeting: "你好 %{recipient}！"
-        instruction: "有人要求更改密码的链接，您可以通过下面的链接更改密码："
-        instruction_2: "如果您没有要求请求更改密码，请忽略此电子邮件。"
-        instruction_3: "如果你没有访问上面的链接并更改密码，你的密码就不会被改变。"
+        instruction: "您可以通过下面的链接更改密码："
+        instruction_2: "如果您没有请求更改密码，请忽略此电子邮件。"
+        instruction_3: "忽略以上链接，你的密码不会被改变。"
         subject: "重置密码信息"
       unlock_instructions:
         action: "帐户解锁"

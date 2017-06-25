@@ -1,0 +1,9 @@
+mailer:
+  default_url_options:
+    host: '0.0.0.0:3000'
+  # action mailer smtp setting
+  smtp:
+    address: '127.0.0.1'
+    port: 25
+  devise:
+    sender: 'sender@domain'
