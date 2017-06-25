@@ -10,7 +10,7 @@
           <div class="topic-title">
             <%= link_to topic.title, topic %>
           </div>
-          <div class="topic-subtext"><%= topic.user %> <%= time_ago_in_words topic.created_at %> | comments | 保存到 Pocket</div>
+          <div class="topic-subtext"><%= topic.user.username %> <%= time_ago_in_words topic.created_at %> | comments | 保存到 Pocket</div>
         </td>
       </tr>
   <% end %>

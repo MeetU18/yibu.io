@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable
 
+  validates :username, presence: true, uniqueness: true, length: 2..20
+
   has_many :topics
 
   # user vote methods
