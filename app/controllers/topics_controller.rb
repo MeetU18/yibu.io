@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.sort_by_score
+    @topics = Topic.sort_by_score.page(params[:page]).per(30)
   end
 
   # GET /topics/1
