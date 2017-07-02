@@ -16,4 +16,6 @@
 //= require foundation-sites/dist/js/foundation.min.js
 //= require_tree .
 
-$(document).foundation();
+document.addEventListener("turbolinks:load", function (event) {
+    $(document).foundation()
+});

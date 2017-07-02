@@ -11,5 +11,6 @@ class Topic < ApplicationRecord
 
   after_create do
     user.up_vote self
+    refresh_score
   end
 end

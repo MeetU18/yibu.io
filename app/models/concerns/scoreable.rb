@@ -20,7 +20,7 @@ module Scoreable
   class_methods do
     # return ActiveRecord::Relation
     def sort_by_score
-      order(score: :desc)
+      order(score: :desc, id: :desc)
     end
   end
 end

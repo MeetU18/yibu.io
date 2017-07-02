@@ -1,9 +1,55 @@
 <h1>新话题</h1>
+<div>
+  <%= form_for(@topic) do |f| %>
+      <% if @topic.errors.any? %>
+          <div class="callout warning">
+            <h5>发现了 <%= @topic.errors.count %> 个错误</h5>
+            <ul>
+              <% @topic.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
-<div class="columns large-6">
-  <%= render 'form', topic: @topic %>
-</div>
+      <div class="row">
+        <div class="field columns large-6">
+          <%= f.label :title, "标题" %>
+          <%= f.text_field :title %>
+        </div>
+      </div>
 
-<div class="columns large-6">
-  Help panel
+      <div class="collapse">
+        <ul class="tabs" data-active-collapse="true" data-tabs id="collapsing-tabs">
+          <li class="tabs-title is-active"><a href="#text-summit-panel" aria-selected="true">文章</a></li>
+          <li class="tabs-title"><a href="#link-summit-panel">链接</a></li>
+        </ul>
+        <div class="tabs-content columns" data-tabs-content="collapsing-tabs">
+          <div class="tabs-panel is-active" id="text-summit-panel">
+            <div class="field columns large-6">
+              <div class="row">
+                <%= f.label :content, "内容" %>
+                <%= f.text_area :content, rows: 10 %>
+              </div>
+              <div class="row">
+                <div class="actions">
+                  <%= f.submit '发布', class: "button primary" %>
+                </div>
+              </div>
+            </div>
+            <div class="columns large-6">
+              <label>Markdown 提示</label>
+              <%= render 'markdown-tips' %>
+            </div>
+          </div>
+          <div class="tabs-panel" id="link-summit-panel">
+            <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh
+              porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
+              Suspendisse dictum feugiat nisl ut dapibus.</p>
+          </div>
+        </div>
+      </div>
+
+  <% end %>
+
 </div>
