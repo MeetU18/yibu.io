@@ -1,24 +1,24 @@
 <% url = {} unless defined? url %>
 <% url = url.merge(action: "create") %>
 <%= form_for(topic) do |f| %>
-    <div class="field columns large-6">
-      <div class="row">
-        <%= f.label :title, "标题" %>
-        <%= f.text_field :title %>
-        <%= f.hidden_field :format, value: :text %>
+    <div class="grid-x grid-padding-x">
+      <div class="field cell large-6">
+        <div>
+          <%= f.label :title, "标题" %>
+          <%= f.text_field :title %>
+          <%= f.hidden_field :format, value: :text %>
+        </div>
+        <div>
+          <%= f.label :content, "内容" %>
+          <%= f.text_area :content, rows: 10 %>
+        </div>
+        <div class="actions">
+          <%= f.submit '发布', class: "button primary" %>
+        </div>
       </div>
-      <div class="row">
-        <%= f.label :content, "内容" %>
-        <%= f.text_area :content, rows: 10 %>
-      </div>
-    </div>
-    <div class="columns large-6">
-      <label>Markdown 提示</label>
-      <%= render 'markdown-tips' %>
-    </div>
-    <div class="row">
-      <div class="actions">
-        <%= f.submit '发布', class: "button primary" %>
+      <div class="cell large-6">
+        <label>Markdown 提示</label>
+        <%= render 'markdown-tips' %>
       </div>
     </div>
 <% end %>

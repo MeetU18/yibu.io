@@ -17,7 +17,7 @@
       <li class="tabs-title is-active"><a href="#text-summit-panel" aria-selected="true">文章</a></li>
       <li class="tabs-title"><a href="#link-summit-panel">链接</a></li>
     </ul>
-    <div class="tabs-content columns" data-tabs-content="collapsing-tabs">
+    <div class="tabs-content grid-container" data-tabs-content="collapsing-tabs">
       <div class="tabs-panel is-active" id="text-summit-panel">
         <%= render 'text_form', topic: @topic, url: {anchor: "text-summit-panel"} %>
       </div>
