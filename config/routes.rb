@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :topics do
+  resources :topics, except: [:edit, :update] do
     member do
       post 'up_vote', to: 'topics#up_vote'
       post 'down_vote', to: 'topics#down_vote'
