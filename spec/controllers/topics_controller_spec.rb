@@ -113,8 +113,9 @@ RSpec.describe TopicsController, type: :controller do
     it "assigns the requested topic as @topic" do
       sign_in user
       topic = user.topics.create! valid_attributes
-      get :edit, params: {id: topic.to_param}
-      expect(assigns(:topic)).to eq(topic)
+      expect {
+        get :edit, params: {id: topic.to_param}
+      }.to raise_exception(ActionController::UrlGenerationError)
     end
 
     it "other user cannot edit @topic" do
@@ -122,7 +123,7 @@ RSpec.describe TopicsController, type: :controller do
       topic = user.topics.create! valid_attributes
       expect {
         get :edit, params: {id: topic.to_param}
-      }.to raise_exception(ActiveRecord::RecordNotFound)
+      }.to raise_exception(ActionController::UrlGenerationError)
     end
   end
 
@@ -175,21 +176,9 @@ RSpec.describe TopicsController, type: :controller do
 
       it "updates the requested topic" do
         topic = user.topics.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: new_attributes}
-        topic.reload
-        expect(topic.title).to_not eq(valid_attributes[:title])
-      end
-
-      it "assigns the requested topic as @topic" do
-        topic = user.topics.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: valid_attributes}
-        expect(assigns(:topic)).to eq(topic)
-      end
-
-      it "redirects to the topic" do
-        topic = user.topics.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: valid_attributes}
-        expect(response).to redirect_to(topic)
+        expect {
+          put :update, params: {id: topic.to_param, topic: new_attributes}
+        }.to raise_exception(ActionController::UrlGenerationError)
       end
     end
 
@@ -198,21 +187,24 @@ RSpec.describe TopicsController, type: :controller do
       it "assigns the topic as @topic" do
         sign_in user
         topic = user.topics.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: invalid_attributes}
-        expect(assigns(:topic)).to eq(topic)
+        expect {
+          put :update, params: {id: topic.to_param, topic: invalid_attributes}
+        }.to raise_exception(ActionController::UrlGenerationError)
       end
 
       it "user not sign in" do
         topic = user.topics.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: invalid_attributes}
-        expect(assigns(:topic)).to be_nil
+        expect {
+          put :update, params: {id: topic.to_param, topic: invalid_attributes}
+        }.to raise_exception(ActionController::UrlGenerationError)
       end
 
       it "re-renders the 'edit' template" do
         sign_in user
         topic = user.topics.create! valid_attributes
-        put :update, params: {id: topic.to_param, topic: invalid_attributes}
-        expect(response).to render_template("edit")
+        expect {
+          put :update, params: {id: topic.to_param, topic: invalid_attributes}
+        }.to raise_exception(ActionController::UrlGenerationError)
       end
     end
   end

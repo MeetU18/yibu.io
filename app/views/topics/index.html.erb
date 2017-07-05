@@ -9,7 +9,11 @@
         </td>
         <td>
           <div class="topic-title">
-            <%= link_to topic.title, topic %>
+            <% if topic.text? %>
+                <%= link_to topic.title, topic %>
+            <% else %>
+                <%= link_to topic.title, topic.content %> <span class="link">(<%= topic.link_url.host %>)</span>
+            <% end %>
           </div>
           <div class="topic-subtext"><%= topic.user.username %> <%= time_ago_in_words topic.created_at %>
           </div>
