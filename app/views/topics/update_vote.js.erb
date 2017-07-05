@@ -1,1 +1,1 @@
-$('tr[data-topic-id="<%= @topic.id %>"] td.vote').html("<%= escape_javascript render('vote', topic: @topic)%>");
+$('div.vote[data-topic-id="<%= @topic.id %>"]').replaceWith("<%= escape_javascript render('vote', topic: @topic)%>");
