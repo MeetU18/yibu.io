@@ -1,0 +1,2 @@
+# initialize singleton markdown renderer
+MarkdownUtils.init_markdown_renderer

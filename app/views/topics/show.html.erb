@@ -2,7 +2,7 @@
   <div class="callout">
     <h5><%= @topic.title %></h5>
     <p>
-      <%= @topic.content %>
+      <%= sanitize MarkdownUtils.render @topic.content %>
     </p>
     <div class="grid-x grid-margin-x">
       <div class="small-1 cell"><%= render 'vote', topic: @topic %></div>
