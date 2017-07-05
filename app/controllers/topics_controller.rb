@@ -67,14 +67,23 @@ class TopicsController < ApplicationController
 
   def up_vote
     @vote = current_user.up_vote(@topic)
+    respond_to do |format|
+      format.js {render 'update_vote'}
+    end
   end
 
   def down_vote
     @vote = current_user.down_vote(@topic)
+    respond_to do |format|
+      format.js {render 'update_vote'}
+    end
   end
 
   def unvote
     @vote = current_user.unvote(@topic)
+    respond_to do |format|
+      format.js {render 'update_vote'}
+    end
   end
 
   private

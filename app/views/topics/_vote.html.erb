@@ -1,13 +1,31 @@
 <div class="vote">
   <div>
-    <%= link_to '/' do %>
-        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    <% if topic.user == current_user %>
+        <%= link_to('javascript:(null);') { %><i class="fa fa-chevron-up voted" aria-hidden="true"></i>
+        <% } %>
+    <% elsif topic.up_voted_by? current_user %>
+        <%= link_to unvote_topic_path(topic), remote: true, method: :delete do %>
+            <i class="fa fa-chevron-up voted" aria-hidden="true"></i>
+        <% end %>
+    <% else %>
+        <%= link_to up_vote_topic_path(topic), remote: true, method: :post do %>
+            <i class="fa fa-chevron-up unvoted" aria-hidden="true"></i>
+        <% end %>
     <% end %>
   </div>
-  <div class="score" data-score="<%= topic.score%>"><%= topic.up_votes.count - topic.down_votes.count %></div>
+  <div class="score" data-score="<%= topic.score %>"><%= topic.up_votes.count - topic.down_votes.count %></div>
   <div>
-    <%= link_to '/' do %>
-        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    <% if topic.user == current_user %>
+        <%= link_to('javascript:(null);') { %><i class="fa fa-chevron-down unvoted" aria-hidden="true"></i>
+        <% } %>
+    <% elsif topic.down_voted_by? current_user %>
+        <%= link_to unvote_topic_path(topic), remote: true, method: :delete do %>
+            <i class="fa fa-chevron-down voted" aria-hidden="true"></i>
+        <% end %>
+    <% else %>
+        <%= link_to down_vote_topic_path(topic), remote: true, method: :post do %>
+            <i class="fa fa-chevron-down unvoted" aria-hidden="true"></i>
+        <% end %>
     <% end %>
   </div>
 </div>

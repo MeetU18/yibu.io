@@ -1,8 +1,9 @@
 <table class="unstriped">
   <tbody>
-  <% @topics.each do |topic| %>
-      <tr>
-        <td class="rank">1</td>
+  <% base_index = (@topics.current_page - 1) * @topics.limit_value + 1 %>
+  <% @topics.each_with_index do |topic, i| %>
+      <tr data-topic-id="<%= topic.id %>">
+        <td class="rank"><%= i + base_index %></td>
         <td class="vote">
           <%= render 'vote', topic: topic %>
         </td>

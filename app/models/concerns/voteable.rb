@@ -18,4 +18,12 @@ module Voteable
   def votes_count
     votes.sum(:value)
   end
+
+  def up_voted_by? user
+    up_votes.where(user: user).exists?
+  end
+
+  def down_voted_by? user
+    down_votes.where(user: user).exists?
+  end
 end

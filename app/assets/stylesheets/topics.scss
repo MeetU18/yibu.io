@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "layouts";
 
-
 // topics list
 td.rank {
   width: 20px;
@@ -35,7 +34,10 @@ div.vote {
   font-size: 18px;
   font-weight: bold;
   color: $medium-gray;
-  i {
+  i.voted {
+    color: darkorange;
+  }
+  i.unvoted {
     color: $medium-gray;
   }
 }
