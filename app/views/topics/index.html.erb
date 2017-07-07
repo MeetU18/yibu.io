@@ -1,4 +1,4 @@
-<table class="unstriped">
+<table class="unstriped topics">
   <tbody>
   <% base_index = (@topics.current_page - 1) * @topics.limit_value + 1 %>
   <% @topics.each_with_index do |topic, i| %>
@@ -15,7 +15,7 @@
                 <%= link_to topic.title, topic.content %> <span class="link">(<%= topic.link_url.host %>)</span>
             <% end %>
           </div>
-          <div class="topic-subtext"><%= topic.user.username %> <%= time_ago_in_words topic.created_at %>
+          <div class="topic-subtext"><%= topic.user.username %> 发布于 <%= time_ago_in_words topic.created_at %>前
           </div>
         </td>
       </tr>

@@ -6,12 +6,13 @@ $black: #0a0a0a;
 $white: #fefefe;
 $warning: #fff3d9;
 
-body {
+.body {
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  max-width: 65rem;
 }
 
 a {
@@ -59,4 +60,8 @@ div {
 
 label {
   display: block;
+}
+
+div.main-content {
+  padding-top: 20px;
 }

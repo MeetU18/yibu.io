@@ -4,6 +4,14 @@
 @import "layouts";
 
 // topics list
+table.topics {
+  tbody {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+  }
+}
+
 td.rank {
   width: 20px;
   padding-right: 10px;
@@ -30,6 +38,7 @@ div.topic-title {
 
 div.topic-subtext {
   padding-top: 14px;
+  font-size: 12px;
 }
 
 // vote component
@@ -44,4 +53,9 @@ div.vote {
   i.unvoted {
     color: $medium-gray;
   }
+}
+
+// show
+div.topic-content {
+  margin-top: 10px;
 }
