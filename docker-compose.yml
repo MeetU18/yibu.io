@@ -2,7 +2,8 @@ version: '3'
 services:
   db:
     image: postgres:9.6
-    volumes: /data/yibuio:/var/lib/postgresql/data
+    volumes:
+    - /data/yibuio:/var/lib/postgresql/data
   web:
     build: .
     environment:
