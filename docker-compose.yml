@@ -4,6 +4,8 @@ services:
     image: postgres:9.6
     volumes:
     - /data/yibuio:/var/lib/postgresql/data
+  redis:
+    image: redis:3.2
   web:
     build: .
     environment:
@@ -11,9 +13,21 @@ services:
     - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     - RAILS_ENV=${RAILS_ENV}
     - RAILS_SERVE_STATIC_FILES=true
+    - RAILS_LOG_TO_STDOUT=true
     - DATABASE_URL=postgres://postgres@db/yibuio
+    - Settings.sidekiq.redis_url=redis://redis/0
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+  worker:
+    build: .
+    environment:
+    - RAILS_ENV=${RAILS_ENV}
+    - RAILS_LOG_TO_STDOUT=true
+    - DATABASE_URL=postgres://postgres@db/yibuio
+    - Settings.sidekiq.redis_url=redis://redis/0
+    command: bundle exec sidekiq
     depends_on:
       - db

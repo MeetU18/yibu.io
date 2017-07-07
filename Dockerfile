@@ -28,6 +28,9 @@ RUN bin/yarn
 # add app directory
 ADD . /app
 
+# link awesome fonts
+RUN ln -s /app/node_modules/font-awesome/fonts /app/public/fonts
+
 ENV RAILS_ENV production
 
 RUN bin/rake assets:precompile
