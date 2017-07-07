@@ -19,9 +19,9 @@ RSpec.describe TopicsController, type: :routing do
       expect(:post => "/topics").to route_to("topics#create")
     end
 
-    it "routes to #destroy" do
-      expect(:delete => "/topics/1").to route_to("topics#destroy", :id => "1")
-    end
+    # it "routes to #destroy" do
+    #   expect(:delete => "/topics/1").to route_to("topics#destroy", :id => "1")
+    # end
 
   end
 end

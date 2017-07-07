@@ -209,24 +209,24 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
-    before :each do
-      sign_in user
-    end
-
-    it "destroys the requested topic" do
-      topic = user.topics.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: topic.to_param}
-      }.to change(Topic, :count).by(-1)
-    end
-
-    it "redirects to the topics list" do
-      topic = user.topics.create! valid_attributes
-      delete :destroy, params: {id: topic.to_param}
-      expect(response).to redirect_to(topics_url)
-    end
-  end
+  # describe "DELETE #destroy" do
+  #   before :each do
+  #     sign_in user
+  #   end
+  #
+  #   it "destroys the requested topic" do
+  #     topic = user.topics.create! valid_attributes
+  #     expect {
+  #       delete :destroy, params: {id: topic.to_param}
+  #     }.to change(Topic, :count).by(-1)
+  #   end
+  #
+  #   it "redirects to the topics list" do
+  #     topic = user.topics.create! valid_attributes
+  #     delete :destroy, params: {id: topic.to_param}
+  #     expect(response).to redirect_to(topics_url)
+  #   end
+  # end
 
   describe "vote posts" do
     let(:topic) {create :topic}
