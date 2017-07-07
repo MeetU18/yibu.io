@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6
+    volumes: /data/yibuio:/var/lib/postgresql/data
+  web:
+    build: .
+    environment:
+    - Settings.devise.secret_key=${DEVISE_SECRET_KEY}
+    - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+    - RAILS_ENV=${RAILS_ENV}
+    - DATABASE_URL=postgres://postgres@db/yibuio
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

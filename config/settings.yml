@@ -7,5 +7,8 @@ mailer:
     port: 25
   devise:
     sender: 'sender@domain'
+
+devise:
+  secret_key: 'default'
 sidekiq:
   redis_url: 'redis://localhost/0'
