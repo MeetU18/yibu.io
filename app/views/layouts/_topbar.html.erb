@@ -13,10 +13,10 @@
             <li><%= link_to current_user.username, edit_user_registration_path %></li>
             <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
         <% else %>
-            <li><%= link_to '登录', new_user_session_path %></li>
+            <li><%= link_to '登录', new_user_session_path_with_redirect_back %></li>
         <% end %>
       </ul>
     </div>
-    <hr />
+    <hr/>
   </div>
 </div>
