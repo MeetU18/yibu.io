@@ -37,6 +37,8 @@ RUN bin/rake assets:precompile
 
 # mark public directory as volume
 VOLUME /app/public
+# fix soft link in docker share volume issue
+RUN rm public/fonts && cp -r ./node_modules/font-awesome/fonts public/fonts
 
 # puma config
 ENV RAILS_MAX_THREADS 5
