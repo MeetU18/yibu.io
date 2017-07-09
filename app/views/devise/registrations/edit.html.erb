@@ -1,4 +1,4 @@
-<h2><%= t('.title', resource: resource_class.model_name.human) %></h2>
+<h5><%= t('.title', resource: resource_class.model_name.human) %></h5>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -33,7 +33,7 @@
   <div><%= f.submit t('.update') %></div>
 <% end %>
 
-<h3><%= t('.cancel_my_account') %></h3>
+<h6><%= t('.cancel_my_account') %></h6>
 
 <p><%= t('.unhappy') %> <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>
 
