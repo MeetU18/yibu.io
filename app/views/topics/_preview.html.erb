@@ -1,0 +1,6 @@
+<div class="callout topic-content" style="display: none;" id="topicContentPreview">
+</div>
+
+<%= form_tag({controller: :topics, action: :preview}, method: :post, id: 'topicPreview', style: 'display:none;', remote: true) do %>
+    <%= hidden_field_tag 'content', '' %>
+<% end %>

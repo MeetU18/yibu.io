@@ -2,7 +2,7 @@
 <% url = url.merge(action: "create") %>
 <%= form_for(topic) do |f| %>
     <div class="grid-x grid-padding-x">
-      <div class="field cell large-6">
+      <div class="field cell large-8">
         <div>
           <%= f.label :title, "标题" %>
           <%= f.text_field :title %>
@@ -10,15 +10,17 @@
         </div>
         <div>
           <%= f.label :content, "内容" %>
-          <%= f.text_area :content, rows: 10 %>
+          <%= f.text_area :content, rows: 10, class: 'editor' %>
         </div>
-        <div class="actions">
+        <div class="button-group actions">
+          <a class="secondary button preview">预览</a>
           <%= f.submit '发布', class: "button primary" %>
         </div>
       </div>
-      <div class="cell large-6">
+      <div class="cell large-4">
         <label>Markdown 提示</label>
         <%= render 'markdown-tips' %>
       </div>
     </div>
 <% end %>
+<%= render 'preview' %>

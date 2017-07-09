@@ -89,6 +89,14 @@ class TopicsController < ApplicationController
     end
   end
 
+  # POST /topics/preview
+  def preview
+    content = params[:content] || ''
+    respond_to do |format|
+      format.json {render 'preview', locals: {content: content}}
+    end
+  end
+
   private
   def set_topic_by_user
     @topic = current_user.topics.find(params[:id])

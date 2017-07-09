@@ -2,7 +2,7 @@
 <% url = url.merge(action: "create") %>
 <%= form_for(topic, url: url) do |f| %>
     <div class="grid-x grid-padding-x">
-      <div class="cell large-6">
+      <div class="cell large-8">
         <div>
           <%= f.label :title, "标题" %>
           <%= f.text_field :title %>
@@ -12,11 +12,11 @@
           <%= f.label :content, "链接" %>
           <%= f.text_field :content, placeholder: 'https://example.com' %>
         </div>
-        <div class="actions">
+        <div class="button-group">
           <%= f.submit '发布', class: "button primary" %>
         </div>
       </div>
-      <div class="cell large-6">
+      <div class="cell large-4">
         <label>提示</label>
         有趣的内容会获得好的评价，尽量避免提交重复链接
       </div>

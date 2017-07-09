@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       post 'down_vote', to: 'topics#down_vote'
       delete 'unvote', to: 'topics#unvote'
     end
+    collection do
+      post 'preview', to: 'topics#preview'
+    end
   end
 
   devise_for :users, controllers: {sessions: 'users/sessions'}
