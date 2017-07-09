@@ -1,5 +1,5 @@
 class Topic < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, -> { with_deleted }
 
   include Voteable
   include Scoreable
