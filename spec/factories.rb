@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :comments do
+    user nil
+    ancestry "MyString"
+    content "MyText"
+  end
   factory :user do
     sequence(:username){|n| "#{Faker::Name.name}-#{n}" }
     email {Faker::Internet.email}

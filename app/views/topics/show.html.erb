@@ -1,19 +1,43 @@
-<div class="grid-container">
-  <div class="callout topic-content">
-    <h5><%= @topic.title %></h5>
-    <p>
-      <%= sanitize MarkdownUtils.render @topic.content %>
-    </p>
-    <div class="grid-x grid-margin-x">
-      <div class="small-1 cell"><%= render 'vote', topic: @topic %></div>
-      <div class="auto cell">
-        <div class="grid-y">
-          <div class="cell">&nbsp;</div>
-          <div class="auto cell">
-            <%= @topic.user.username %> 发布于 <%= time_ago_in_words @topic.created_at %>前
-          </div>
+<div class="callout topic-content">
+  <h5><%= @topic.title %></h5>
+  <p>
+    <%= sanitize MarkdownUtils.render @topic.content %>
+  </p>
+  <div class="grid-x grid-margin-x">
+    <div class="small-1 cell"><%= render 'vote', topic: @topic %></div>
+    <div class="auto cell">
+      <div class="grid-y">
+        <div class="cell">&nbsp;</div>
+        <div class="auto cell">
+          <%= @topic.user.username %> 发布于 <%= time_ago_in_words @topic.created_at %>前
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<%= form_for([@topic, Comment.new], html: {class: 'cell'}) do |f| %>
+    <div class="field">
+      <div>
+        <%= f.label :content, "内容" %>
+        <%= f.text_area :content, rows: 4, class: 'editor' %>
+      </div>
+      <div class="button-group actions">
+        <% if user_signed_in? %>
+            <%= f.submit '评论', class: "button primary" %>
+        <% else %>
+            <%= link_to '评论', new_user_session_path_with_redirect_back, class: "button primary" %>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+
+<div class="topic-comments">
+  <% @comments.each_with_index do |comment, i| %>
+      <hr/>
+      <div class="comment">
+        <span>#<%= i + 1 %> <%= comment.user.username %> 评论于 <%= time_ago_in_words comment.created_at %>前</span>
+        <p><%= comment.content %></p>
+      </div>
+  <% end %>
 </div>

@@ -1,5 +1,6 @@
 class Topic < ApplicationRecord
-  belongs_to :user, -> { with_deleted }
+  belongs_to :user, -> {with_deleted}
+  has_one :root_comment, class_name: 'Comment'
 
   include Voteable
   include Scoreable

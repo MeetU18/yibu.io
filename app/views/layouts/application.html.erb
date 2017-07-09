@@ -12,10 +12,13 @@
 <body>
 
 <%= render 'layouts/topbar' %>
-<div class="grid-container body">
-  <%= render 'layouts/notice' %>
-  <%= yield %>
+<div class="grid-container body grid-x grid-padding-x">
+  <div class="main-content cell">
+    <%= render 'layouts/notice' %>
+    <%= yield %>
+  </div>
 </div>
+<%= render 'layouts/footer' %>
 
 </body>
 </html>

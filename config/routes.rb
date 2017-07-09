@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+
+  get 'comments/index'
+
   resources :topics, only: [:index, :show, :new, :create] do
+    resources :comments, only: [:create]
     member do
       post 'up_vote', to: 'topics#up_vote'
       post 'down_vote', to: 'topics#down_vote'

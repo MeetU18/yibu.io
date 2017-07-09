@@ -40,6 +40,8 @@ gem 'kramdown'
 
 gem 'devise'
 gem 'paranoia'
+gem 'ancestry'
+
 gem 'sidekiq'
 
 gem 'rails-i18n', '~> 5.0.0'
