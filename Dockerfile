@@ -35,9 +35,6 @@ ENV RAILS_ENV production
 
 RUN bin/rake assets:precompile
 
-# copy static files
-COPY /app/public /tmp/static_root/public
-
 # puma config
 ENV RAILS_MAX_THREADS 5
 ENV WEB_CONCURRENCY 1
