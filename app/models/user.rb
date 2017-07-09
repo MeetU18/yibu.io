@@ -13,6 +13,11 @@ class User < ApplicationRecord
   # user vote methods
   has_many :votes
 
+  # is site admin?
+  def admin?
+    AdminUtils.admin_emails.include? email
+  end
+
   def up_vote(voteable)
     votes.find_or_create_by(voteable: voteable).tap(&:up!)
   end
