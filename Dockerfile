@@ -35,6 +35,9 @@ ENV RAILS_ENV production
 
 RUN bin/rake assets:precompile
 
+# mark public directory as volume
+VOLUME /app/public
+
 # puma config
 ENV RAILS_MAX_THREADS 5
 ENV WEB_CONCURRENCY 1
