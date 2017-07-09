@@ -28,8 +28,8 @@ RUN bin/yarn
 # add app directory
 ADD . /app
 
-# link awesome fonts
-RUN ln -s /app/node_modules/font-awesome/fonts /app/public/fonts
+# cp awesome fonts to static files
+RUN cp -r /app/node_modules/font-awesome/fonts /app/public/fonts
 
 ENV RAILS_ENV production
 
@@ -37,8 +37,6 @@ RUN bin/rake assets:precompile
 
 # mark public directory as volume
 VOLUME /app/public
-# fix soft link in docker share volume issue
-RUN rm public/fonts && cp -r ./node_modules/font-awesome/fonts public/fonts
 
 # puma config
 ENV RAILS_MAX_THREADS 5
