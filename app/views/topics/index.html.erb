@@ -16,6 +16,7 @@
             <% end %>
           </div>
           <div class="topic-subtext"><%= topic.user.username %> 发布于 <%= time_ago_in_words topic.created_at %>前
+            | <%= link_to '查看评论', topic %>
           </div>
         </td>
       </tr>

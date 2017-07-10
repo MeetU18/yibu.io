@@ -17,7 +17,7 @@
         <% end %>
     <% end %>
   </div>
-  <div class="score" data-score="<%= topic.score %>"><%= topic.up_votes.count - topic.down_votes.count %></div>
+  <div class="score text-center" data-score="<%= topic.score %>"><%= topic.up_votes.count - topic.down_votes.count %></div>
   <div>
     <% if !signed_in? %>
         <%= link_to new_user_session_path_with_redirect_back do %>
