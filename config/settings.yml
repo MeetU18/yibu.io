@@ -16,3 +16,5 @@ sidekiq:
 app:
   admin:
     emails: ''
+  ga:
+    id:
