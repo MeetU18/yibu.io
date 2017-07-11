@@ -1,22 +1,18 @@
-<div class="grid-x grid-padding-x align-center site-top-bar">
-  <div class="cell large-10">
-    <div class="float-left">
-      <ul class="menu">
-        <li class="menu-text"><%= link_to '异步IO', root_path %></li>
-        <li><%= link_to '热度排序', root_path %></li>
-        <li><%= link_to '发布', new_topic_path %></li>
-      </ul>
-    </div>
-    <div class="float-right">
-      <ul class="menu">
-        <% if signed_in? %>
-            <li><%= link_to current_user.username, edit_user_registration_path %></li>
-            <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
-        <% else %>
-            <li><%= link_to '登录', new_user_session_path_with_redirect_back %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="grid-x align-center site-top-bar">
+  <div class="cell large-10 small-auto">
+    <ul class="menu float-left">
+      <li class="menu-text"><%= link_to '异步IO', root_path %></li>
+      <li><%= link_to '热度排序', root_path %></li>
+      <li><%= link_to '发布', new_topic_path %></li>
+    </ul>
+    <ul class="menu float-right">
+      <% if signed_in? %>
+          <li><%= link_to current_user.username, edit_user_registration_path %></li>
+          <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+          <li><%= link_to '登录', new_user_session_path_with_redirect_back %></li>
+      <% end %>
+    </ul>
     <hr/>
   </div>
 </div>

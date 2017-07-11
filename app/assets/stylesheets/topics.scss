@@ -54,3 +54,10 @@ div.vote {
     color: $medium-gray;
   }
 }
+
+// comments
+div.topic-comments {
+  div.comment {
+    word-break: break-all;
+  }
+}

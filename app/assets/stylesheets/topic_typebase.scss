@@ -25,6 +25,8 @@ $scale: 0.66;
 
   /* Copy & Lists */
 
+  word-break: break-all;
+
   p {
     line-height: $leading;
     margin-top: $leading;
