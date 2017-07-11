@@ -1,10 +1,12 @@
 module MarkdownUtils
+  class Renderer
+    include ActionView::Helpers::SanitizeHelper
+  end
+  
   module_function
 
-  def init_markdown_renderer
-  end
-
   def render content
-    Kramdown::Document.new(content).to_html
+    renderer = Renderer.new
+    Kramdown::Document.new(renderer.strip_tags content).to_html
   end
 end

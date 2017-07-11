@@ -1,11 +1,11 @@
-<div class="callout topic-content">
+<div class="callout main-content">
   <% if @topic.link? %>
       <h5><%= link_to @topic.title, @topic.content %> <span>(<%= @topic.link_url.host %>)</span></h5>
   <% else %>
       <h5><%= @topic.title %></h5>
-      <p>
+      <div class="topic-content">
         <%= sanitize MarkdownUtils.render @topic.content %>
-      </p>
+      </div>
   <% end %>
   <div class="grid-x grid-margin-x">
     <div class="small-1 cell"><%= render 'vote', topic: @topic %></div>
