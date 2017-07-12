@@ -1,12 +1,8 @@
 module MarkdownUtils
-  class Renderer
-    include ActionView::Helpers::SanitizeHelper
-  end
-  
   module_function
 
+  # NOTICE: maybe still include some dangerous tag like <script>, must sanitize before render
   def render content
-    renderer = Renderer.new
-    Kramdown::Document.new(renderer.strip_tags content).to_html
+    Kramdown::Document.new(content, input: :kramdown).to_html
   end
 end
