@@ -39,6 +39,9 @@ div.topic-title {
 div.topic-subtext {
   padding-top: 14px;
   font-size: 12px;
+  span {
+    color: $dark-gray;
+  }
 }
 
 // vote component

@@ -16,8 +16,8 @@
                 <%= link_to topic.title, topic.content %> <span class="link">(<%= topic.link_url.host %>)</span>
             <% end %>
           </div>
-          <div class="topic-subtext"><%= topic.user.username %> 发布于 <%= time_ago_in_words topic.created_at %>前
-            | <%= link_to "查看评论(#{topic.comments_count})", topic %>
+          <div class="topic-subtext">
+            <%= render_topic_info topic, comments: true%>
           </div>
         </td>
       </tr>

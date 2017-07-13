@@ -13,7 +13,7 @@
       <div class="grid-y">
         <div class="cell">&nbsp;</div>
         <div class="auto cell">
-          <%= @topic.user.username %> 发布于 <%= time_ago_in_words @topic.created_at %>前
+          <%= render_topic_info @topic%>
         </div>
       </div>
     </div>
