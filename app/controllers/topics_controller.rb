@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @tag = params[:id] ? Tag.find(params[:id]) : nil
-    @topics = Topic.by_tag(@tag).sort_by_score.page(params[:page]).per(30)
+    @topics = Topic.by_tag(@tag).includes(:tag).sort_by_score.page(params[:page]).per(30)
   end
 
   # GET /topics/1
