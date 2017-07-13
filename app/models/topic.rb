@@ -1,13 +1,16 @@
 class Topic < ApplicationRecord
   belongs_to :user, -> {with_deleted}
+  belongs_to :tag, -> {with_deleted}
   has_one :root_comment, class_name: 'Comment'
 
   include Voteable
   include Scoreable
 
+  scope :by_tag, ->(tag) {where(tag: tag) if tag.present?}
+
   enum format: [:text, :link]
 
-  validates_presence_of :title, :content, :user_id
+  validates_presence_of :title, :content, :user_id, :tag_id
   validate :validate_link_format_url, if: :link?
 
   after_create do

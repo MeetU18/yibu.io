@@ -1,7 +1,7 @@
 /*! Typebase.scss v0.1.0 | MIT License */
 
 // Typesetting variables. Edit these!
-$baseFontSize: 20; // in pixels. This would result in 22px on desktop
+$baseFontSize: 18; // in pixels. This would result in 22px on desktop
 $baseLineHeight: 1.5; // how large the line height is as a multiple of font size
 $leading: $baseLineHeight * 1rem;
 // Rate of growth for headings
@@ -10,7 +10,7 @@ $scale: 0.66;
 
 /* Setup */
 
-.topic-content {
+.markdown-content {
   /* Change default typefaces here */
   //font-family: serif, verdana, arial, helvetica, sans-serif;
   padding: 5px;

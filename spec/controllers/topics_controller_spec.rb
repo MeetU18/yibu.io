@@ -24,11 +24,15 @@ RSpec.describe TopicsController, type: :controller do
     create :user
   }
 
+  let(:tag) {
+    create :tag
+  }
+
   # This should return the minimal set of attributes required to create a valid
   # Topic. As you add validations to Topic, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {title: 'First topic', content: 'Hello World! this is first topic!', format: 'text'}
+    {title: 'First topic', content: 'Hello World! this is first topic!', format: 'text', tag_id: tag.id}
   }
 
   # This should return the minimal set of values that should be in the session

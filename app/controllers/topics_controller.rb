@@ -7,7 +7,8 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.sort_by_score.page(params[:page]).per(30)
+    @tag = params[:id] ? Tag.find(params[:id]) : nil
+    @topics = Topic.by_tag(@tag).sort_by_score.page(params[:page]).per(30)
   end
 
   # GET /topics/1
@@ -18,7 +19,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
-    @topic = current_user.topics.new
+    @topic = current_user.topics.new tag_id: params[:tag_id]
   end
 
   # GET /topics/1/edit
@@ -109,6 +110,6 @@ class TopicsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def topic_params
-    params.require(:topic).permit(:title, :content, :format)
+    params.require(:topic).permit(:title, :content, :format, :tag_id)
   end
 end

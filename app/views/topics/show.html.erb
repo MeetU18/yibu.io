@@ -3,7 +3,7 @@
       <h5><%= link_to @topic.title, @topic.content %> <span>(<%= @topic.link_url.host %>)</span></h5>
   <% else %>
       <h5><%= @topic.title %></h5>
-      <div class="topic-content">
+      <div class="topic-content markdown-content">
         <%= sanitize MarkdownUtils.render @topic.content %>
       </div>
   <% end %>

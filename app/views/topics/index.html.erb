@@ -1,3 +1,4 @@
+<%= render 'tags/introduce' %>
 <table class="unstriped topics">
   <tbody>
   <% base_index = (@topics.current_page - 1) * @topics.limit_value + 1 %>
@@ -24,7 +25,7 @@
   </tbody>
 </table>
 
-<%= paginate @topics %>
+<%= paginate @topics, params: {id: @tag&.id} %>
 
 <br>
 

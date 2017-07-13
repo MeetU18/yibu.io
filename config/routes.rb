@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'comments/create'
 
   get 'comments/index'
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
       post 'preview', to: 'topics#preview'
     end
   end
+
+  get 'tags/:id', to: 'topics#index', as: :tag_topics
 
   devise_for :users, controllers: {sessions: 'users/sessions'}
 

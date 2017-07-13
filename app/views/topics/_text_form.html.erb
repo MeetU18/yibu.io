@@ -12,6 +12,10 @@
           <%= f.label :content, "内容" %>
           <%= f.text_area :content, rows: 10, class: 'editor' %>
         </div>
+        <div>
+          <%= f.label :tag_id, "分区" %>
+          <%= f.select :tag_id, recommended_tags.map {|t| [t.name, t.id]}, prompt: '请选择' %>
+        </div>
         <div class="button-group actions">
           <a class="secondary button preview">预览</a>
           <%= f.submit '发布', class: "button primary" %>

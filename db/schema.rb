@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709200359) do
+ActiveRecord::Schema.define(version: 20170713121757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20170709200359) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "tags"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "introduce"
+    t.integer "sequence"
+    t.index ["deleted_at"], name: "index_tags_on_deleted_at"
+    t.index ["sequence"], name: "index_tags_on_sequence", unique: true
+    t.index ["tags"], name: "index_tags_on_tags"
+  end
+
   create_table "topics", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -35,7 +48,9 @@ ActiveRecord::Schema.define(version: 20170709200359) do
     t.datetime "updated_at", null: false
     t.decimal "score", precision: 11, scale: 7, default: "0.0"
     t.integer "format", default: 0, null: false
+    t.bigint "tag_id"
     t.index ["score"], name: "index_topics_on_score"
+    t.index ["tag_id"], name: "index_topics_on_tag_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
@@ -74,5 +89,6 @@ ActiveRecord::Schema.define(version: 20170709200359) do
   end
 
   add_foreign_key "comments", "users"
+  add_foreign_key "topics", "tags"
   add_foreign_key "votes", "users"
 end
