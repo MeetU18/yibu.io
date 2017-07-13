@@ -2,7 +2,7 @@ module Voteable
   extend ActiveSupport::Concern
 
   included do
-    has_many :votes, foreign_key: 'voteable_id'
+    has_many :votes, as: :voteable
   end
 
   def up_votes
@@ -19,11 +19,16 @@ module Voteable
     votes.sum(:value)
   end
 
+  def vote_by user
+    # hit db cache, better than exists? method
+    votes.where(user: user).first
+  end
+
   def up_voted_by? user
-    up_votes.where(user: user).exists?
+    vote_by(user)&.up? || false
   end
 
   def down_voted_by? user
-    down_votes.where(user: user).exists?
+    vote_by(user)&.down? || false
   end
 end
