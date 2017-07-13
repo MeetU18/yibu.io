@@ -8,10 +8,14 @@
 
 1. Modify `config/settings.yml` and `docker-compose.yml` options
 2. Install `docker-compose`
-3. Use `docker-compose up -d --build` start services
-4. Run `docker-compose run web rails db:create`
-5. Run `docker-compose run web rails db:migrate`
-6. Visit http://0.0.0.0:3000
+3. Run `docker-compose up -d --build` to start services
+4. Init database
+   ```
+   docker-compose run web rails db:create
+   docker-compose run web rails db:migrate
+   docker-compose run web rails db:seed
+   ```
+7. Visit http://0.0.0.0:3000
 
 # LICENSE
 
