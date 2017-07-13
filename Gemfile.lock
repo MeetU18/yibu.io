@@ -114,6 +114,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.2)
     multi_json (1.12.1)
+    newrelic_rpm (4.2.0.334)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -258,6 +259,7 @@ DEPENDENCIES
   kaminari
   kramdown
   listen (~> 3.0.5)
+  newrelic_rpm
   paranoia
   pg (~> 0.18)
   pry-byebug
