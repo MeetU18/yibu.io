@@ -18,6 +18,10 @@ class Topic < ApplicationRecord
     refresh_score
   end
 
+  def comments_count
+    root_comment&.subtree&.count || 0
+  end
+
   def link_url
     URI(content)
   end
