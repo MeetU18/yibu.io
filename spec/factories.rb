@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :tag do
     name {Faker::Cat.name}
+    sequence(:sequence) {|n| n}
   end
   factory :comments do
     user
