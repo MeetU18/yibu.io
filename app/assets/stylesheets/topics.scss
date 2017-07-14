@@ -38,9 +38,13 @@ div.topic-title {
 
 div.topic-subtext {
   padding-top: 14px;
-  font-size: 12px;
-  span {
+  font-size: 14px;
+  span, a {
     color: $dark-gray;
+  }
+  a {
+    //underline
+    border-bottom:1px dotted #666666;
   }
 }
 
@@ -51,7 +55,7 @@ div.vote {
   font-weight: bold;
   color: $medium-gray;
   i.voted {
-    color: darkorange;
+    color: lightskyblue;
   }
   i.unvoted {
     color: $medium-gray;
