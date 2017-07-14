@@ -20,9 +20,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {sessions: 'users/sessions'}
 
-  require 'sidekiq/web'
   authenticate :user, lambda {|u| u.admin?} do
+    require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
+
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
