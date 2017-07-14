@@ -13,8 +13,12 @@ devise:
 sidekiq:
   redis_url: 'redis://localhost/0'
 
+raven:
+  dsn:
+
+ga:
+  id:
+
 app:
   admin:
     emails: ''
-  ga:
-    id:
