@@ -8,12 +8,14 @@
 
 # Init tags
 Tag.create(name: 'ShowCase',
+           sequence: 1,
            introduce: <<-MD.strip_heredoc
               展示独立项目，分享你的创造故事！你的分享会给更多开发者带来鼓励和帮助
 MD
 )
 
 Tag.create(name: '技术分享',
+           sequence: 2,
            introduce: <<-MD.strip_heredoc
               编程语言，框架，开源技术都可以在这里分享讨论
 
@@ -22,12 +24,14 @@ MD
 )
 
 Tag.create(name: '工作生活',
+           sequence: 3,
            introduce: <<-MD.strip_heredoc
               工作与生活中遇到的好事与牢骚..
 MD
 )
 
 Tag.create(name: 'Remote招聘',
+           sequence: 4,
            introduce: <<-MD.strip_heredoc
               发布，求职 Remote工作
 
