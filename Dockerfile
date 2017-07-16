@@ -1,5 +1,11 @@
 FROM rails:5
 
+RUN apt-get update
+RUN apt-get install -y locales locales-all
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
 # update bundler version
 RUN gem install bundler
 
@@ -10,7 +16,7 @@ ADD Gemfile.lock /app
 RUN bundle install
 
 # install nodejs
-RUN apt-get update && apt-get install -y apt-transport-https && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y apt-transport-https && apt-get install -y --no-install-recommends apt-utils
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 
