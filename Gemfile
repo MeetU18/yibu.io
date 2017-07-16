@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'config'
 gem 'kramdown'
+gem 'meta-tags'
 
 gem 'devise'
 gem 'paranoia'

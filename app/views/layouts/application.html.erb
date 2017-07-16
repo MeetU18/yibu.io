@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>YibuIo</title>
+  <%= display_meta_tags site: Settings.app.title, keywords: Settings.app.keywords&.split || [] %>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <%= csrf_meta_tags %>
 

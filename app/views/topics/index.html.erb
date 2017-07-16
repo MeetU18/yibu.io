@@ -1,4 +1,6 @@
-<%= render 'tags/introduce' %>
+<% cache @tag do %>
+    <%= render 'tags/introduce' %>
+<% end %>
 <table class="unstriped topics">
   <tbody>
   <% base_index = (@topics.current_page - 1) * @topics.limit_value + 1 %>
@@ -17,7 +19,7 @@
             <% end %>
           </div>
           <div class="topic-subtext">
-            <%= render_topic_info topic, comments: true%>
+            <%= render_topic_info topic, comments: true %>
           </div>
         </td>
       </tr>

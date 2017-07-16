@@ -20,5 +20,8 @@ ga:
   id:
 
 app:
+  title: '异步IO'
+  description: '异步IO 技术论坛，高质量的开发者交流创造社区'
+  keywords: '个人项目 开发者 个人开发者 indie hacker side project sideproject 程序员 创业 独立开发 论坛 社区 技术 交流 开源'
   admin:
     emails: ''

@@ -1,8 +1,14 @@
 <% if @tag %>
+    <% markdown_introduce = MarkdownUtils.render @tag.introduce %>
+    <% title @tag.name %>
+    <% description strip_tags markdown_introduce %>
     <div class="callout">
       <h5><%= @tag.name %></h5>
       <div class="markdown-content">
-        <%= sanitize MarkdownUtils.render @tag.introduce %>
+        <%= sanitize markdown_introduce %>
       </div>
     </div>
+<% else %>
+    <% title '首页' %>
+    <% description Settings.app.description %>
 <% end %>

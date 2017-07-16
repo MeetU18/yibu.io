@@ -1,10 +1,15 @@
+<% title @topic.title %>
+
 <div class="callout main-content">
   <% if @topic.link? %>
       <h5><%= link_to @topic.title, @topic.content %> <span>(<%= @topic.link_url.host %>)</span></h5>
+      <% description @topic.content %>
   <% else %>
+      <% markdown_content = MarkdownUtils.render @topic.content %>
+      <% description strip_tags markdown_content %>
       <h5><%= @topic.title %></h5>
       <div class="topic-content markdown-content">
-        <%= sanitize MarkdownUtils.render @topic.content %>
+        <%= sanitize markdown_content %>
       </div>
   <% end %>
   <div class="grid-x grid-margin-x">
@@ -13,7 +18,7 @@
       <div class="grid-y">
         <div class="cell">&nbsp;</div>
         <div class="auto cell">
-          <%= render_topic_info @topic%>
+          <%= render_topic_info @topic %>
         </div>
       </div>
     </div>
