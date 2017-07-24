@@ -38,16 +38,16 @@ gem 'kaminari'
 gem 'config'
 gem 'kramdown'
 gem 'meta-tags'
-
 gem 'devise'
 gem 'paranoia'
 gem 'ancestry'
-
 gem 'sidekiq'
 gem 'rails_admin', '~> 1.2'
-
 gem 'rails-i18n', '~> 5.0.0'
 gem 'devise-i18n'
+
+# frontend gems
+gem 'font-awesome-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
