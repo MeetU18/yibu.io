@@ -34,9 +34,6 @@ RUN bin/yarn
 # add app directory
 ADD . /app
 
-# cp awesome fonts to static files
-RUN cp -r /app/node_modules/font-awesome/fonts /app/public/fonts
-
 ENV RAILS_ENV production
 
 RUN bin/rake assets:precompile
