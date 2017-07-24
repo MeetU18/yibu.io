@@ -12,6 +12,8 @@ devise:
   secret_key: 'default'
 sidekiq:
   redis_url: 'redis://localhost/0'
+  server:
+  client:
 
 raven:
   dsn:
