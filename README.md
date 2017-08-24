@@ -1,6 +1,6 @@
 # Yibuio
 
-[yibu.io](http://yibu.io) community source
+[yibuio](https://yibuio.herokuapp.com/) community source
 
 异步IO 是基于评分和标签的论坛，灵感来自于 Reddit, 可以认为是精简的开源实现
 
@@ -8,7 +8,7 @@ Yibuio is a simple and elegant forum, inspired from Reddit.
 
 ## DEMO
 
-http://yibu.io
+https://yibuio.herokuapp.com/
 
 ## Deploy
 
